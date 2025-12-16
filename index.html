@@ -11,7 +11,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png?v=1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=1">
 
-  <!-- Browser / OS Farbe -->
   <meta name="theme-color" content="#d8b48a">
 
   <style>
@@ -22,6 +21,7 @@
       --card: #ffffff;
       --text: #2b2b2b;
       --muted: #777;
+      --error: #c0392b;
     }
 
     * {
@@ -50,7 +50,6 @@
       padding: 36px 32px 32px;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
 
     .card::before {
@@ -63,7 +62,6 @@
       background: var(--accent);
     }
 
-    /* Logo */
     .logo {
       width: 72px;
       height: 72px;
@@ -85,42 +83,9 @@
     .subtitle {
       font-size: 15px;
       color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
-    /* Info (kurz) */
-    .info {
-      display: grid;
-      gap: 18px;
-      margin-bottom: 32px;
-      text-align: left;
-    }
-
-    .info-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .info-icon {
-      font-size: 22px;
-      color: var(--accent);
-      margin-top: 2px;
-    }
-
-    .info-text {
-      font-size: 14.5px;
-      line-height: 1.5;
-      color: #444;
-    }
-
-    .info-text strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    /* Buttons */
     .actions {
       display: grid;
       gap: 12px;
@@ -128,21 +93,17 @@
     }
 
     .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
       padding: 14px;
       border-radius: 12px;
       font-size: 15px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.15s ease;
+      cursor: pointer;
+      border: none;
     }
 
     .btn-primary {
       background: var(--accent);
-      color: #000;
     }
 
     .btn-primary:hover {
@@ -151,47 +112,48 @@
 
     .btn-secondary {
       background: #f1f1f1;
-      color: #333;
     }
 
-    .btn-secondary:hover {
-      background: #e6e6e6;
+    /* Suche */
+    .pet-search {
+      display: none;
+      gap: 8px;
+      margin: 12px 0 6px;
     }
 
-    /* Mehr-Info (Toggle) */
+    .pet-search input {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .pet-search button {
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: none;
+      background: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .error {
+      display: none;
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--error);
+    }
+
     .more-info {
       display: none;
       margin-top: 24px;
       padding-top: 24px;
       border-top: 1px solid #eee;
       text-align: left;
-    }
-
-    .more-info h2 {
-      font-size: 18px;
-      margin-bottom: 12px;
-    }
-
-    .more-info p {
       font-size: 14.5px;
-      line-height: 1.6;
-      margin-bottom: 12px;
       color: #444;
-    }
-
-    .more-info ul {
-      padding-left: 18px;
-      margin-bottom: 12px;
-    }
-
-    .more-info li {
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    .more-info .note {
-      font-size: 13px;
-      color: #777;
     }
 
     .footer {
@@ -202,123 +164,86 @@
 
     .footer strong {
       color: var(--accent);
-      font-weight: 600;
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
+<div class="card">
 
-    <!-- PET-ID Logo -->
-    <div class="logo">
-      <img src="/assets/icons/webicon-256.png" alt="PET-ID Logo">
-    </div>
-
-    <h1>PET-ID.page</h1>
-
-    <div class="subtitle">
-      Zentrale Anlaufstelle<br>
-      für verlorene Tiere
-    </div>
-
-    <!-- Kurz-Info -->
-    <div class="info">
-      <div class="info-item">
-        <div class="info-icon">🐾</div>
-        <div class="info-text">
-          <strong>PET-ID</strong> hilft dabei, verlorene Haustiere
-          schnell wieder mit ihren Besitzern zu vereinen.
-        </div>
-      </div>
-
-      <div class="info-item">
-        <div class="info-icon">🔗</div>
-        <div class="info-text">
-          QR-Code oder ID führt direkt zu einer sicheren
-          Informationsseite des Tieres.
-        </div>
-      </div>
-
-      <div class="info-item">
-        <div class="info-icon">🔒</div>
-        <div class="info-text">
-          Datensparsam, zuverlässig und jederzeit erreichbar –
-          für Finder, Besitzer und Tierheime.
-        </div>
-      </div>
-    </div>
-
-    <!-- Actions -->
-    <div class="actions">
-      <a href="#" class="btn btn-primary" onclick="toggleSearch()">
-        🐶 Tier gefunden
-      </a>
-
-      <a href="#" class="btn btn-secondary" onclick="toggleInfo(event)">
-        ℹ️ Mehr über PET-ID erfahren
-      </a>
-    </div>
-
-    <!-- PET-ID Suche -->
-    <div class="pet-search" id="petSearch">
-      <input
-        type="text"
-        id="petIdInput"
-        placeholder="PET-ID eingeben (z. B. K8F3A2)"
-        maxlength="12"
-      >
-      <button onclick="goToPetId()">Suchen</button>
-    </div>
-
-    <!-- Mehr Infos -->
-    <div class="more-info" id="moreInfo">
-      <h2>Was ist PET-ID?</h2>
-
-      <p>
-        <strong>PET-ID</strong> ist ein Non-Profit-Projekt, das es Findern ermöglicht,
-        ein entlaufenes Haustier schnell und unkompliziert seinem Zuhause zuzuordnen.
-      </p>
-
-      <ul>
-        <li>🐾 Keine App erforderlich</li>
-        <li>🔓 Keine Registrierung notwendig</li>
-        <li>💸 Komplett kostenlos</li>
-        <li>🔗 Zugriff per QR-Code oder ID</li>
-        <li>🌍 Weltweit im Browser nutzbar</li>
-      </ul>
-
-      <p class="note">
-        Finder scannen einfach den QR-Code oder geben die PET-ID im Browser ein –
-        sofort stehen die wichtigsten Informationen bereit.
-      </p>
-    </div>
-
-    <div class="footer">
-      Projekt im Aufbau – <strong>PET-ID.page</strong><br>
-      Non-Profit · kostenlos · ohne App · ohne Registrierung
-    </div>
-
+  <div class="logo">
+    <img src="/assets/icons/webicon-256.png" alt="PET-ID Logo">
   </div>
 
-  <script>
-    function toggleSearch() {
-      const el = document.getElementById('petSearch');
-      el.style.display = el.style.display === 'flex' ? 'none' : 'flex';
-      document.getElementById('petIdInput').focus();
+  <h1>PET-ID.page</h1>
+  <div class="subtitle">Zentrale Anlaufstelle für verlorene Tiere</div>
+
+  <div class="actions">
+    <button class="btn btn-primary" onclick="toggleSearch()">🐶 Tier gefunden</button>
+    <button class="btn btn-secondary" onclick="toggleInfo()">ℹ️ Mehr über PET-ID erfahren</button>
+  </div>
+
+  <!-- Suche -->
+  <div class="pet-search" id="petSearch">
+    <input id="petIdInput" placeholder="PET-ID eingeben (z. B. K8F3A2)" maxlength="12">
+    <button onclick="goToPetId()">Suchen</button>
+  </div>
+
+  <div class="error" id="errorMsg">
+    ❗ PET-ID nicht gefunden oder ungültig. Bitte prüfen.
+  </div>
+
+  <!-- Info -->
+  <div class="more-info" id="moreInfo">
+    <p><strong>PET-ID</strong> ist ein Non-Profit-Projekt.</p>
+    <ul>
+      <li>🐾 Keine App</li>
+      <li>🔓 Keine Registrierung</li>
+      <li>💸 Kostenlos</li>
+      <li>🌍 Direkt im Browser</li>
+    </ul>
+    <p>QR-Code scannen oder PET-ID eingeben – fertig.</p>
+  </div>
+
+  <div class="footer">
+    Projekt im Aufbau – <strong>PET-ID.page</strong><br>
+    Non-Profit · kostenlos · ohne App · ohne Registrierung
+  </div>
+
+</div>
+
+<script>
+  function toggleSearch() {
+    const box = document.getElementById('petSearch');
+    const input = document.getElementById('petIdInput');
+    document.getElementById('errorMsg').style.display = "none";
+
+    box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+    if (box.style.display === 'flex') input.focus();
+  }
+
+  function goToPetId() {
+    const raw = document.getElementById('petIdInput').value.trim();
+    const error = document.getElementById('errorMsg');
+
+    if (!raw || raw.length < 4) {
+      error.style.display = "block";
+      return;
     }
 
-    function goToPetId() {
-      const val = document.getElementById('petIdInput').value.trim();
-      if (!val) return;
-      window.location.href = '/' + val.toUpperCase() + '.pet-id.page';
-    }
+    const id = raw.toLowerCase();
+    window.location.href = "https://" + id + ".pet-id.page";
+  }
 
-    function toggleInfo(e) {
-      e.preventDefault();
-      const box = document.getElementById('moreInfo');
-      box.style.display = box.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
+  function toggleInfo() {
+    const box = document.getElementById('moreInfo');
+    box.style.display = box.style.display === 'block' ? 'none' : 'block';
+  }
+
+  document.getElementById("petIdInput").addEventListener("keypress", e => {
+    if (e.key === "Enter") goToPetId();
+  });
+</script>
+
 </body>
 </html>
