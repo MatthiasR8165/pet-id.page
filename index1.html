@@ -5,11 +5,19 @@
   <title>PET-ID.page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- PET-ID – Favicon (global für alle Seiten) -->
+  <link rel="icon" href="/assets/icons/favicon.ico?v=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png?v=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png?v=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=1">
+
+  <!-- Browser / OS Farbe -->
   <meta name="theme-color" content="#d8b48a">
 
   <style>
     :root {
       --accent: #d8b48a;
+      --accent-dark: #caa46e;
       --bg: #f6f6f6;
       --card: #ffffff;
       --text: #2b2b2b;
@@ -37,7 +45,7 @@
       background: var(--card);
       border-radius: 18px;
       box-shadow: 0 12px 34px rgba(0,0,0,0.08);
-      max-width: 520px;
+      max-width: 540px;
       width: 100%;
       padding: 36px 32px 32px;
       text-align: center;
@@ -55,7 +63,7 @@
       background: var(--accent);
     }
 
-    /* Logo / Icon */
+    /* Logo */
     .logo {
       width: 72px;
       height: 72px;
@@ -81,11 +89,11 @@
       margin-bottom: 32px;
     }
 
-    /* Info Section */
+    /* Info */
     .info {
       display: grid;
       gap: 18px;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
       text-align: left;
     }
 
@@ -97,9 +105,7 @@
 
     .info-icon {
       font-size: 22px;
-      line-height: 1;
       color: var(--accent);
-      flex-shrink: 0;
       margin-top: 2px;
     }
 
@@ -110,8 +116,46 @@
     }
 
     .info-text strong {
-      font-weight: 600;
       color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Buttons */
+    .actions {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background: #f1f1f1;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background: #e6e6e6;
     }
 
     .footer {
@@ -129,7 +173,7 @@
 <body>
   <div class="card">
 
-    <!-- ICON -->
+    <!-- PET-ID Logo -->
     <div class="logo">
       <img src="/assets/icons/webicon-256.png" alt="PET-ID Logo">
     </div>
@@ -141,37 +185,47 @@
       für verlorene Tiere
     </div>
 
-    <!-- INFO -->
+    <!-- Info -->
     <div class="info">
-
       <div class="info-item">
         <div class="info-icon">🐾</div>
         <div class="info-text">
           <strong>PET-ID</strong> hilft dabei, verlorene Haustiere
-          schnell wieder zu ihren Besitzern zurückzubringen.
+          schnell wieder mit ihren Besitzern zu vereinen.
         </div>
       </div>
 
       <div class="info-item">
         <div class="info-icon">🔗</div>
         <div class="info-text">
-          Jedes Tier erhält eine eindeutige ID oder einen QR-Code,
-          der auf eine sichere Informationsseite verweist.
+          QR-Code oder ID führt direkt zu einer sicheren
+          Informationsseite des Tieres.
         </div>
       </div>
 
       <div class="info-item">
-        <div class="info-icon">🏠</div>
+        <div class="info-icon">🔒</div>
         <div class="info-text">
-          Für Privatpersonen, Tierheime und Finder –
-          einfach, datensparsam und jederzeit erreichbar.
+          Datensparsam, zuverlässig und jederzeit erreichbar –
+          für Finder, Besitzer und Tierheime.
         </div>
       </div>
+    </div>
 
+    <!-- Actions -->
+    <div class="actions">
+      <a href="#" class="btn btn-primary">
+        🐶 Tier gefunden
+      </a>
+
+      <a href="#" class="btn btn-secondary">
+        ℹ️ Mehr über PET-ID erfahren
+      </a>
     </div>
 
     <div class="footer">
-      Testseite – <strong>Projekt im Aufbau</strong>
+      Projekt im Aufbau – <strong>PET-ID.page</strong><br>
+      Non-Profit · kostenlos · keine App · keine Registrierung
     </div>
 
   </div>
