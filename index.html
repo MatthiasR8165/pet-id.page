@@ -14,8 +14,6 @@
       --card: #ffffff;
       --text: #2b2b2b;
       --muted: #777;
-      --success-bg: #eef6f0;
-      --success-text: #1e7f43;
     }
 
     * {
@@ -27,31 +25,26 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(
-        180deg,
-        #faf8f5 0%,
-        var(--bg) 100%
-      );
-      color: var(--text);
+      background: linear-gradient(180deg, #faf8f5 0%, var(--bg) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 16px;
+      color: var(--text);
     }
 
     .card {
       background: var(--card);
-      padding: 36px 32px;
       border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      max-width: 460px;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.08);
+      max-width: 520px;
       width: 100%;
+      padding: 36px 32px 32px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    /* dezenter Accent-Balken */
     .card::before {
       content: "";
       position: absolute;
@@ -62,35 +55,63 @@
       background: var(--accent);
     }
 
+    /* Logo / Icon */
+    .logo {
+      width: 72px;
+      height: 72px;
+      margin: 4px auto 16px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+    }
+
     h1 {
-      margin: 8px 0 10px;
+      margin: 0 0 8px;
       font-size: 30px;
-      letter-spacing: 1.2px;
       font-weight: 700;
+      letter-spacing: 1.2px;
     }
 
     .subtitle {
-      color: var(--muted);
       font-size: 15px;
-      margin-bottom: 28px;
-      line-height: 1.4;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 32px;
     }
 
-    .status {
+    /* Info Section */
+    .info {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    .info-item {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-weight: 600;
-      padding: 16px 14px;
-      border-radius: 12px;
-      background: var(--success-bg);
-      color: var(--success-text);
-      margin-bottom: 28px;
+      gap: 14px;
+      align-items: flex-start;
     }
 
-    .status span {
-      font-size: 14px;
-      font-weight: 500;
+    .info-icon {
+      font-size: 22px;
+      line-height: 1;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .info-text {
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    .info-text strong {
+      font-weight: 600;
+      color: var(--text);
     }
 
     .footer {
@@ -108,6 +129,11 @@
 <body>
   <div class="card">
 
+    <!-- ICON -->
+    <div class="logo">
+      <img src="/assets/icons/webicon-256.png" alt="PET-ID Logo">
+    </div>
+
     <h1>PET-ID.page</h1>
 
     <div class="subtitle">
@@ -115,13 +141,37 @@
       für verlorene Tiere
     </div>
 
-    <div class="status">
-      ✅ Verbindung erfolgreich
-      <span>GitHub Pages &amp; Cloudflare funktionieren</span>
+    <!-- INFO -->
+    <div class="info">
+
+      <div class="info-item">
+        <div class="info-icon">🐾</div>
+        <div class="info-text">
+          <strong>PET-ID</strong> hilft dabei, verlorene Haustiere
+          schnell wieder zu ihren Besitzern zurückzubringen.
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">🔗</div>
+        <div class="info-text">
+          Jedes Tier erhält eine eindeutige ID oder einen QR-Code,
+          der auf eine sichere Informationsseite verweist.
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">🏠</div>
+        <div class="info-text">
+          Für Privatpersonen, Tierheime und Finder –
+          einfach, datensparsam und jederzeit erreichbar.
+        </div>
+      </div>
+
     </div>
 
     <div class="footer">
-      Testseite – <strong>Aufbau folgt</strong>
+      Testseite – <strong>Projekt im Aufbau</strong>
     </div>
 
   </div>
