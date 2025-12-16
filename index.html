@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>PET-ID.page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#d8b48a">
+
+  <style>
+    :root {
+      --accent: #d8b48a;
+      --accent-dark: #caa46e;
+      --bg: #f6f6f6;
+      --card: #ffffff;
+      --text: #2b2b2b;
+      --muted: #777;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #faf8f5 0%, var(--bg) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      color: var(--text);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.08);
+      max-width: 540px;
+      width: 100%;
+      padding: 36px 32px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--accent);
+    }
+
+    /* Logo */
+    .logo {
+      width: 72px;
+      height: 72px;
+      margin: 4px auto 16px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    /* Info */
+    .info {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .info-icon {
+      font-size: 22px;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .info-text {
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    .info-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Buttons */
+    .actions {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background: #f1f1f1;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background: #e6e6e6;
+    }
+
+    .footer {
+      font-size: 13px;
+      color: #999;
+    }
+
+    .footer strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+
+    <!-- ICON -->
+    <div class="logo">
+      <img src="/assets/icons/webicon-256.png" alt="PET-ID Logo">
+    </div>
+
+    <h1>PET-ID.page</h1>
+
+    <div class="subtitle">
+      Zentrale Anlaufstelle<br>
+      für verlorene Tiere
+    </div>
+
+    <!-- INFO -->
+    <div class="info">
+      <div class="info-item">
+        <div class="info-icon">🐾</div>
+        <div class="info-text">
+          <strong>PET-ID</strong> hilft dabei, verlorene Haustiere
+          schnell wieder mit ihren Besitzern zu vereinen.
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">🔗</div>
+        <div class="info-text">
+          QR-Code oder ID führt direkt zu einer sicheren
+          Informationsseite des Tieres.
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">🔒</div>
+        <div class="info-text">
+          Datensparsam, zuverlässig und jederzeit erreichbar –
+          für Finder, Besitzer und Tierheime.
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <a href="#" class="btn btn-primary">
+        🐶 Tier gefunden
+      </a>
+
+      <a href="#" class="btn btn-secondary">
+        ℹ️ Mehr über PET-ID erfahren
+      </a>
+    </div>
+
+    <div class="footer">
+      Projekt im Aufbau – <strong>PET-ID.page</strong>
+    </div>
+
+  </div>
+</body>
+</html>
