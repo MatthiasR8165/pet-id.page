@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>PET-ID.page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PET-ID – Favicon (global für alle Seiten) -->
+  <link rel="icon" href="/assets/icons/favicon.ico?v=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png?v=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png?v=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=1">
+
+  <meta name="theme-color" content="#d8b48a">
+
+  <style>
+    :root {
+      --accent: #d8b48a;
+      --accent-dark: #caa46e;
+      --bg: #f6f6f6;
+      --card: #ffffff;
+      --text: #2b2b2b;
+      --muted: #777;
+      --error: #c0392b;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #faf8f5 0%, var(--bg) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      color: var(--text);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.08);
+      max-width: 540px;
+      width: 100%;
+      padding: 36px 32px 32px;
+      text-align: center;
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 12px;
+      background: var(--accent);
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      margin: 4px auto 16px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 26px;
+    }
+
+    .pet-search {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .pet-search input {
+      flex: 1;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    .pet-search button {
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: none;
+      background: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .pet-search button:hover {
+      background: var(--accent-dark);
+    }
+
+    .error {
+      display: none;
+      margin: 8px 0 16px;
+      font-size: 13px;
+      color: var(--error);
+    }
+
+    .actions {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .btn-secondary {
+      background: #f1f1f1;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: #e6e6e6;
+    }
+
+    .more-info {
+      display: none;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #eee;
+      text-align: left;
+      font-size: 14.5px;
+      color: #444;
+    }
+
+    .more-info ul {
+      padding-left: 18px;
+    }
+
+    .footer {
+      margin-top: 28px;
+      font-size: 13px;
+      color: #999;
+      line-height: 1.6;
+    }
+
+    .footer a {
+      color: #777;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer strong {
+      color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+<div class="card">
+
+  <div class="logo">
+    <img src="/assets/icons/webicon-256.png" alt="PET-ID Logo">
+  </div>
+
+  <h1>PET-ID.page</h1>
+  <div class="subtitle">Zentrale Anlaufstelle für verlorene Tiere</div>
+
+  <!-- PET-ID Suche -->
+  <div class="pet-search">
+    <input
+      id="petIdInput"
+      placeholder="Tier gefunden? PET-ID eingeben (z. B. K0F0A0)"
+      maxlength="12"
+    >
+    <button onclick="goToPetId()">Suchen</button>
+  </div>
+
+  <div class="error" id="errorMsg">
+    ❗ PET-ID nicht gefunden oder ungültig. Bitte prüfen.
+  </div>
+
+  <div class="actions">
+    <button class="btn-secondary" onclick="toggleInfo()">
+      ℹ️ Mehr über PET-ID erfahren
+    </button>
+  </div>
+
+  <div class="more-info" id="moreInfo">
+    <p><strong>PET-ID</strong> ist ein Non-Profit-Projekt.</p>
+    <ul>
+      <li>🐾 Keine App</li>
+      <li>🔓 Keine Registrierung</li>
+      <li>💸 Kostenlos</li>
+      <li>🌍 Direkt im Browser</li>
+    </ul>
+    <p>QR-Code scannen oder PET-ID eingeben – fertig.</p>
+  </div>
+
+  <div class="footer">
+    Projekt im Aufbau – <strong>PET-ID.page</strong><br>
+    Non-Profit · kostenlos · ohne App · ohne Registrierung<br><br>
+
+    <a href="/impressum.html">Impressum</a>
+    ·
+    <a href="/datenschutz.html">Datenschutz</a>
+  </div>
+
+</div>
+
+<script>
+  function goToPetId() {
+    const raw = document.getElementById('petIdInput').value.trim();
+    const error = document.getElementById('errorMsg');
+
+    if (!raw || raw.length < 4) {
+      error.style.display = "block";
+      return;
+    }
+
+    error.style.display = "none";
+    const id = raw.toLowerCase();
+    window.location.href = "https://" + id + ".pet-id.page";
+  }
+
+  function toggleInfo() {
+    const box = document.getElementById('moreInfo');
+    box.style.display = box.style.display === 'block' ? 'none' : 'block';
+  }
+
+  document.getElementById("petIdInput").addEventListener("keypress", e => {
+    if (e.key === "Enter") goToPetId();
+  });
+</script>
+
+</body>
+</html>
