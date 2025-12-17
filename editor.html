@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>PET-ID Editor – Gismo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system;
+      background: #f6f6f6;
+      margin: 0;
+      padding: 16px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: auto;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.06);
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    button {
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .save {
+      background: #d8b48a;
+    }
+
+    .reset {
+      background: #eee;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <h1>🐾 PET-ID Editor – Gismo</h1>
+  <p>Änderungen werden lokal gespeichert (Browser).</p>
+
+  <div class="card">
+    <h3>Grunddaten</h3>
+
+    <label>Name</label>
+    <input id="name">
+
+    <label>PET-ID</label>
+    <input id="pet_id">
+
+    <label>Untertitel</label>
+    <input id="subtitle">
+
+    <label>Geburtsdatum</label>
+    <input id="birthdate">
+
+    <label>Hinweis</label>
+    <textarea id="note"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Besitzer 1</h3>
+
+    <label>Name</label>
+    <input id="owner1_name">
+
+    <label>Telefon</label>
+    <input id="owner1_phone">
+
+    <label>E-Mail</label>
+    <input id="owner1_email">
+  </div>
+
+  <div class="card">
+    <h3>Tierarzt</h3>
+
+    <label>Praxis</label>
+    <input id="vet_practice">
+
+    <label>Telefon</label>
+    <input id="vet_phone">
+  </div>
+
+  <button class="save" onclick="save()">💾 Speichern</button>
+  <button class="reset" onclick="resetData()">♻️ Zurücksetzen</button>
+
+</div>
+
+<script>
+  const defaults = JSON.parse(localStorage.getItem("petData")) || {};
+
+  function fill(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.value = value || "";
+  }
+
+  fill("name", defaults.name);
+  fill("pet_id", defaults.pet_id);
+  fill("subtitle", defaults.subtitle);
+  fill("birthdate", defaults.birthdate);
+  fill("note", defaults.note);
+
+  fill("owner1_name", defaults.owners?.[0]?.name);
+  fill("owner1_phone", defaults.owners?.[0]?.phone);
+  fill("owner1_email", defaults.owners?.[0]?.email);
+
+  fill("vet_practice", defaults.vet?.practice);
+  fill("vet_phone", defaults.vet?.phone);
+
+  function save() {
+    const petData = {
+      ...defaults,
+      name: name.value,
+      pet_id: pet_id.value,
+      subtitle: subtitle.value,
+      birthdate: birthdate.value,
+      note: note.value,
+
+      owners: [{
+        name: owner1_name.value,
+        phone: owner1_phone.value,
+        email: owner1_email.value
+      }],
+
+      vet: {
+        ...defaults.vet,
+        practice: vet_practice.value,
+        phone: vet_phone.value
+      }
+    };
+
+    localStorage.setItem("petData", JSON.stringify(petData));
+    alert("Gespeichert! Öffne index.html neu.");
+  }
+
+  function resetData() {
+    localStorage.removeItem("petData");
+    alert("Zurückgesetzt. index.html nutzt wieder Default.");
+  }
+</script>
+</body>
+</html>
